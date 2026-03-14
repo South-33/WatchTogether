@@ -104,12 +104,14 @@ function initPopup() {
     newSessionBtn.addEventListener('click', function () {
         setState('initiate');
         chrome.storage.sync.set({ state: 'initiate' }, function () { });
+        chrome.storage.sync.set({ role: 'leader' }, function () { });
         chrome.runtime.sendMessage({ action: 'newSession' });
     }, false);
 
     joinSessionBtn.addEventListener('click', function () {
         setState('join');
         chrome.storage.sync.set({ state: 'join' }, function () { });
+        chrome.storage.sync.set({ role: 'follower' }, function () { });
     }, false);
 
     copyButton.addEventListener('click', function () {
@@ -125,10 +127,12 @@ function initPopup() {
 
     disconnectButton.addEventListener('click', function () {
         chrome.runtime.sendMessage({ action: 'disconnectPeers' });
+        chrome.storage.sync.set({ role: null }, function () { });
     }, false);
 
     footer.children[0].addEventListener('click', function () {
         chrome.runtime.sendMessage({ action: 'disconnectPeers' });
+        chrome.storage.sync.set({ role: null }, function () { });
     }, false);
 
     vidSync.addEventListener('click', function () {
