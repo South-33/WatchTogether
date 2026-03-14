@@ -1,19 +1,24 @@
 {
     "name": "Watch Together",
-    "version": "0.3",
+    "version": "0.4.0",
     "manifest_version": 3,
-    "description": "Synchronized video controlling using WebRTC.",
+    "description": "Leader-controlled video sync with short codes.",
     "permissions": [
         "storage",
         "activeTab",
         "scripting",
-        "offscreen"
+        "offscreen",
+        "tabs"
     ],
     "host_permissions": [
         "<all_urls>"
     ],
     "background": {
-        "service_worker": "background-sw.js"
+        "service_worker": "background-sw.js",
+        "type": "module"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://*.convex.cloud wss://*.convex.cloud; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:"
     },
     "action": {
         "default_popup": "popup.html",

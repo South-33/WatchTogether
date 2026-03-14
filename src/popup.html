@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WatchTogether</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <div class="brand">
+          <div class="brand__orb"></div>
+          <div>
+            <p class="brand__title">WatchTogether</p>
+            <p class="brand__subtitle">Broadcast control room</p>
+          </div>
+        </div>
+        <div class="status-pill" id="statusPill">Idle</div>
+      </header>
+
+      <section class="panel panel--session">
+        <div class="panel__header">
+          <h2>Session</h2>
+          <span class="role-tag" id="roleTag">No role</span>
+        </div>
+        <div class="session-grid">
+          <div class="session-code">
+            <span class="label">Code</span>
+            <div class="code-row">
+              <span class="code" id="sessionCode">------</span>
+              <button class="btn btn--ghost" id="copyCode">Copy</button>
+            </div>
+          </div>
+          <div class="session-actions">
+            <button class="btn btn--primary" id="createBtn">Create</button>
+            <button class="btn btn--outline" id="joinBtn">Join</button>
+            <button class="btn btn--ghost" id="leaveBtn">Leave</button>
+          </div>
+          <div class="session-join">
+            <input
+              class="input"
+              id="joinCode"
+              placeholder="Enter 6-char code"
+              maxlength="6"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel--control">
+        <div class="panel__header">
+          <h2>Control</h2>
+          <div class="toggle">
+            <input type="checkbox" id="autoSyncToggle" />
+            <label for="autoSyncToggle">Auto-sync buffers</label>
+          </div>
+        </div>
+        <div class="control-grid">
+          <div class="control-card">
+            <span class="label">Active tab</span>
+            <p class="value" id="activeUrl">No tab selected</p>
+            <button class="btn btn--outline" id="activateTab">Activate this tab</button>
+          </div>
+          <div class="control-card">
+            <span class="label">Playback</span>
+            <div class="telemetry">
+              <div>
+                <span class="telemetry__label">Leader</span>
+                <span class="telemetry__value" id="leaderTime">--:--</span>
+              </div>
+              <div>
+                <span class="telemetry__label">Local</span>
+                <span class="telemetry__value" id="localTime">--:--</span>
+              </div>
+              <div>
+                <span class="telemetry__label">Drift</span>
+                <span class="telemetry__value" id="driftValue">--</span>
+              </div>
+            </div>
+            <div class="control-actions">
+              <button class="btn btn--primary" id="resyncBtn">Resync now</button>
+              <button class="btn btn--ghost" id="requestResyncBtn">Request resync</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel--participants">
+        <div class="panel__header">
+          <h2>Participants</h2>
+          <span class="label" id="participantCount">0 online</span>
+        </div>
+        <div class="participants" id="participantsList"></div>
+      </section>
+
+      <section class="panel panel--diagnostics">
+        <div class="panel__header">
+          <h2>Diagnostics</h2>
+          <span class="label" id="autoPausedLabel"></span>
+        </div>
+        <div class="diagnostics-grid">
+          <div class="diagnostic">
+            <span class="label">Resync request</span>
+            <span class="value" id="resyncRequest">None</span>
+          </div>
+          <div class="diagnostic">
+            <span class="label">Convex URL</span>
+            <div class="input-row">
+              <input class="input input--small" id="convexUrl" placeholder="https://<deployment>.convex.cloud" />
+              <button class="btn btn--ghost" id="saveConvexUrl">Save</button>
+            </div>
+          </div>
+        </div>
+        <p class="error" id="errorText"></p>
+      </section>
+    </div>
+
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>
+
+
+
+
